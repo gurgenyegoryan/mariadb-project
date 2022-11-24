@@ -15,14 +15,14 @@ RUN chmod +x mariadb_repo_setup \
    --mariadb-server-version="mariadb-10.6"
 
 #Install python
-COPY python_installer.sh python_installer.sh
-RUN chmod +x python_installer.sh \
-    && ./python_installer.sh
+COPY install_python.sh install_python.sh
+RUN chmod +x install_python.sh.sh \
+    && ./install_python.sh
 
 # Install and configure mariadb-server
-COPY mariadbSserver_install_configure.sh mariadbSserver_install_configure.sh
-RUN chmod +x mariadbSserver_install_configure.sh \
-    && ./mariadbSserver_install_configure.sh
+COPY mariadb_installer.sh mariadb_installer.sh
+RUN chmod +x mariadb_installer.sh \
+    && ./mariadb_installer.sh
 #RUN apt-get update -y \
     #&& apt-get install -y libmariadb3 \
     #&& wget http://archive.ubuntu.com/ubuntu/pool/universe/m/mariadb-10.6/libmariadb-dev_10.6.7-2ubuntu1_amd64.deb \
