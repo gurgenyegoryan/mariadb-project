@@ -1,6 +1,5 @@
 import csv
 
-
 csv_file = "Individual_Incident_2004.csv"
 with open(csv_file) as file_obj:
     # Get columns name
@@ -16,5 +15,3 @@ with open(csv_file) as file_obj:
         else:
             # must be change
             values_type.append('longtext')
-
-
