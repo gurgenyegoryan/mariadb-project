@@ -22,7 +22,6 @@ def get_csv_data() -> CSVData:
     csv_data.columns_name = next(csv_data.data)
 
     for row in csv_data.data:
-        print(row)
         for cell in row:
             try:
                 int(cell)
