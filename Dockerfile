@@ -16,12 +16,12 @@ RUN chmod +x mariadb_repo_setup \
 
 #Install python
 COPY  python_installer.sh  python_installer.sh
-RUN chmod +x  python_installer.sh \
+RUN sudo chmod +x  python_installer.sh \
     && ./ python_installer.sh
 
 # Install and configure mariadb-server
 COPY mariadb_installer.sh mariadb_installer.sh
-RUN chmod +x mariadb_installer.sh \
+RUN sudo chmod +x mariadb_installer.sh \
     && ./mariadb_installer.sh
 #RUN apt-get update -y \
     #&& apt-get install -y libmariadb3 \
