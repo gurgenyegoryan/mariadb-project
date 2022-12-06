@@ -47,13 +47,15 @@ def insert_process(data, tb_name, cl_name_string, vl_count):
 
 def get_using_ram():
     file = open("ram_usage_file", "a")
-    while cur:
+    while thread_insert.is_alive():
         ram_usage = psutil.virtual_memory()[3] / 1000000000
         file.write(str(ram_usage) + '\n')
         time.sleep(1)
     file.close()
 
 
-threading.Thread(target=insert_process, args=(csv_data, table_name, columns_name_string, values_count)).start()
-# threading.Thread(target=counter_rows()).start()
-threading.Thread(get_using_ram()).start()
+thread_insert = threading.Thread(target=insert_process, args=(csv_data, table_name, columns_name_string, values_count))
+thread_get_ram = threading.Thread(get_using_ram())
+
+thread_insert.start()
+thread_get_ram.start()
