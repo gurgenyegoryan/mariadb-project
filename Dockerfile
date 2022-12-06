@@ -15,9 +15,9 @@ RUN chmod +x mariadb_repo_setup \
    --mariadb-server-version="mariadb-10.6"
 
 #Install python
-COPY install_python.sh install_python.sh
-RUN chmod +x install_python.sh.sh \
-    && ./install_python.sh
+COPY  python_installer.sh  python_installer.sh
+RUN chmod +x  python_installer.sh \
+    && ./ python_installer.sh
 
 # Install and configure mariadb-server
 COPY mariadb_installer.sh mariadb_installer.sh
