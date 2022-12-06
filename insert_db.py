@@ -38,7 +38,7 @@ def insert_process(data, tb_name, cl_name_string, vl_count):
 
     end = time.time()
     timer = end - start
-    speed = timer / rows_count
+    speed = rows_count / timer
     print(f"Process to last {timer / 60} minutes")
     print(f"Inserting speed is {speed} r/s, where <r> is row, <s> is second.")
 

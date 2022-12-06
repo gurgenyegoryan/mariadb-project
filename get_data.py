@@ -18,7 +18,7 @@ csv_data = CSVData()
 def get_csv_data() -> CSVData:
     csv_file = "Individual_Incident_2004.csv"
     csv_data.data = csv.reader(open(csv_file))
-
+    csv_data.rows_count = len(list(csv.reader(open(csv_file))))
     csv_data.columns_name = next(csv_data.data)
 
     for row in csv_data.data:
@@ -28,7 +28,6 @@ def get_csv_data() -> CSVData:
             except ValueError:
                 csv_data.values_type.append('longtext')
             else:
-                # must be change
                 csv_data.values_type.append('longtext')
         break
 
