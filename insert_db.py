@@ -1,6 +1,6 @@
+import os
 import time
 import datetime
-import psutil
 import threading
 
 import mariadb
@@ -46,13 +46,15 @@ def insert_process(data, tb_name, cl_name_string, vl_count):
 
 
 def get_using_ram():
-    file = open("ram_usage_file", "a")
+    ram_usage = []
     while thread_insert.is_alive():
-        #ram_usage = psutil.virtual_memory()[3] / 1000000000
-        ram_usage = int(psutil.virtual_memory().total - psutil.virtual_memory().available) / 1024 / 1024
-        file.write(str(ram_usage) + '\n')
+        # Getting all memory using os.popen()
+        total_memory, used_memory, free_memory = map(
+         int, os.popen('free -t -m').readlines()[-1].split()[1:])
+        ram_usage.append(used_memory)
         time.sleep(1)
-    file.close()
+    print(ram_usage[1:20])
+
 
 
 thread_insert = threading.Thread(target=insert_process, args=(csv_data, table_name, columns_name_string, values_count))
