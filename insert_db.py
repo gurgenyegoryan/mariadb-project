@@ -48,7 +48,8 @@ def insert_process(data, tb_name, cl_name_string, vl_count):
 def get_using_ram():
     file = open("ram_usage_file", "a")
     while thread_insert.is_alive():
-        ram_usage = psutil.virtual_memory()[3] / 1000000000
+        #ram_usage = psutil.virtual_memory()[3] / 1000000000
+        ram_usage = int(psutil.virtual_memory().total - psutil.virtual_memory().available) / 1024 / 1024
         file.write(str(ram_usage) + '\n')
         time.sleep(1)
     file.close()
