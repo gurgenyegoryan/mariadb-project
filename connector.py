@@ -7,7 +7,7 @@ try:
     conn = mariadb.connect(
         user="root",
         password="Yeg.1995",
-        host="ngn.am",
+        host="localhost",
         port=3306,
         database="pythontest",
     )
