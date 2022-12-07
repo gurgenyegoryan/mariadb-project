@@ -1,4 +1,4 @@
-import os
+import psutil
 import time
 import datetime
 import threading
@@ -45,20 +45,20 @@ def insert_process(data, tb_name, cl_name_string, vl_count):
     cur.close()
 
 
+kb = float(1024)
+gb = float(kb ** 3)
+
+
 def get_using_ram():
     ram_usage = []
+    thread_insert = threading.Thread(target=insert_process,
+                                     args=(csv_data, table_name, columns_name_string, values_count))
+    thread_insert.start()
     while thread_insert.is_alive():
-        # Getting all memory using os.popen()
-        total_memory, used_memory, free_memory = map(
-         int, os.popen('free -t -m').readlines()[-1].split()[1:])
+        used_memory = int(psutil.virtual_memory()[3] / gb)
         ram_usage.append(used_memory)
         time.sleep(1)
-    print(ram_usage[1:20])
 
 
-
-thread_insert = threading.Thread(target=insert_process, args=(csv_data, table_name, columns_name_string, values_count))
-thread_get_ram = threading.Thread(get_using_ram())
-
-thread_insert.start()
+thread_get_ram = threading.Thread(target=get_using_ram)
 thread_get_ram.start()
