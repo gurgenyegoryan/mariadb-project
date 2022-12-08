@@ -41,4 +41,5 @@ RUN apt-get install libc6 \
 WORKDIR /app
 COPY . .
 
-CMD mariadb start
+ENTRYPOINT service mariadb start && /bin/bash
+CMD [ "python3", "./insert_db.py"]
