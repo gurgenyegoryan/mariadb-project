@@ -1,11 +1,12 @@
-import psutil
 import time
 import datetime
+
 import threading
+import psutil
+
 
 import mariadb
 import connector
-
 import create_table
 from get_data import get_csv_data
 
@@ -67,12 +68,8 @@ def get_using_ram():
 
     average = sum(ram_usage) / len(ram_usage)
     max_ram = max(ram_usage)
-    print(average,max_ram)
+    print(f"Average of using ram: {average} \n Max using ram: {max_ram}")
+    del ram_usage
 
 
-def Average(lst):
-    return sum(lst) / len(lst)
-
-
-thread_get_ram = threading.Thread(target=get_using_ram)
-thread_get_ram.start()
+get_using_ram()

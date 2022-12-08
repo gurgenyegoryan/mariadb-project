@@ -17,7 +17,8 @@ RUN chmod +x mariadb_repo_setup \
 #Install python
 COPY  python_installer.sh  python_installer.sh
 RUN chmod +x python_installer.sh \
-    && ./python_installer.sh
+    && ./python_installer.sh \
+    && pip3 install psutil
 
 # Install and configure mariadb-server
 COPY mariadb_installer.sh mariadb_installer.sh
@@ -39,3 +40,5 @@ RUN apt-get install libc6 \
 
 WORKDIR /app
 COPY . .
+
+CMD mariadb start
