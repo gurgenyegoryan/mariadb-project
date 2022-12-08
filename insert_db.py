@@ -48,9 +48,15 @@ def insert_process(data, tb_name, cl_name_string, vl_count):
 kb = float(1024)
 gb = float(kb ** 3)
 
+average = 0
+max_ram = 0
+
 
 def get_using_ram():
+    global average, max_ram
+
     ram_usage = []
+
     thread_insert = threading.Thread(target=insert_process,
                                      args=(csv_data, table_name, columns_name_string, values_count))
     thread_insert.start()
@@ -58,6 +64,14 @@ def get_using_ram():
         used_memory = int(psutil.virtual_memory()[3] / gb)
         ram_usage.append(used_memory)
         time.sleep(1)
+
+    average = sum(ram_usage) / len(ram_usage)
+    max_ram = max(ram_usage)
+    print(average,max_ram)
+
+
+def Average(lst):
+    return sum(lst) / len(lst)
 
 
 thread_get_ram = threading.Thread(target=get_using_ram)
