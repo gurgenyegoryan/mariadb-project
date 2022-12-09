@@ -19,6 +19,7 @@ def create_table(name, columns_name, values_type):
     if not has_table(table_name):
         execute_command = f"create table {name} ({columns_name[0]} {values_type[0]});"
         cur.execute(execute_command)
+        print(f"Created {table_name} table")
 
     print(f"{name} table exist in database.")
     for i in range(1, len(columns_name)):
