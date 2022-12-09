@@ -1,4 +1,4 @@
-#Insert data from csv file, and count ram usage,time spent and writing speed(r/s).
+# Insert data from csv file, and count ram usage,time spent and writing speed(r/s).
 
 1.Pull repozitory and run command`
 docker build .
